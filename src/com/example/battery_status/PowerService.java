@@ -23,26 +23,17 @@ public class PowerService extends Service {
         @Override
         public void onReceive(Context arg0, Intent intent) {
 
-            /*int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-            int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-
-            float batteryPct = level / (float)scale;*/
-
             int currentLevel = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
             int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
             int level = -1;
             if (currentLevel >= 0 && scale > 0) {
                 level = (currentLevel * 100) / scale;
             }
-
-
-            // Toast.makeText(arg0,"Battery Broadcast"+level,Toast.LENGTH_SHORT).show();
             showNotification(arg0, level);
-
-
         }
 
     };
+
     public PendingIntent contentIntent;
     public Notification notification = new Notification(R.drawable.one,
             "Battery Manager Service Started.", System.currentTimeMillis());
@@ -67,17 +58,6 @@ public class PowerService extends Service {
 
     @Override
     public void onStart(final Intent intent, int startid) {
-      /*  notification = new Notification(R.drawable.ic_launcher,
-                "Rolling text on statusbar", System.currentTimeMillis());
-
-        contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, MyActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
-        ps = this;
-        notification.setLatestEventInfo(this,
-                "Battery Manager", "Battery charging is.", contentIntent);
-
-        startForeground(1, notification);*/
-
 
     }
 
@@ -101,7 +81,7 @@ public class PowerService extends Service {
                 new Intent(this, MyActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
         ps = this;
         notification.setLatestEventInfo(this,
-                "Battery Manager", "Battery charging is." + level, contentIntent);
+                "Battery Manager", "Battery charge level " + level+"%", contentIntent);
 
         startForeground(1, notification);
 

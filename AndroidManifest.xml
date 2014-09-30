@@ -22,5 +22,4 @@
                 android:name="com.example.battery_status.PowerService"
                 android:enabled="true"/>
     </application>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
-</manifest> 
+</manifest>
